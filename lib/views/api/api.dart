@@ -7,6 +7,7 @@ class Api {
   static const String login = BASE_URL + '/jeecg-boot/sys/login'; //初始化 重新登录 app初始化时调用
 
   static const String randomImage = BASE_URL + '/jeecg-boot/sys/randomImage'; //验证码.
+  static const String getUserPermissionByToken = BASE_URL + '/jeecg-boot/sys/permission/getUserPermissionByToken'; //验证码.
 
 
 

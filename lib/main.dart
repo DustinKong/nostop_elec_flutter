@@ -43,16 +43,6 @@ void realRunApp() async {
   ///使用第三方控件初始化之前 初始化
   WidgetsFlutterBinding.ensureInitialized();
 
-  // SharesdkPlugin.uploadPrivacyPermissionStatus(1, (bool success) {
-  //   if(success == true) {
-  //   } else {
-  //   }
-  // });
-  // ShareSDKRegister register = ShareSDKRegister();
-  //
-  // register.setupQQ("1111157351", 'ygAM6Mx9ry5A1BZp');
-  // register.setupWechat("wx168e6182cda848b7",'bc27c60c68bb263284682bdc9e6e7ab5',"https://wfmtx.share2dlink.com/");
-
   ///使缓存获取与写入同步
   bool success = await SpUtil.getInstance();
   print("init-" + success.toString());

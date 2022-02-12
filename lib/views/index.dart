@@ -32,21 +32,9 @@ class _IndexState extends State<Index> {
         Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
       });
     }
+    FutureDio('get', Api.getUserPermissionByToken, {}).then((res) {
+      print(res.data['data']);
 
-    FutureDio('get', Api.Rotation, {}).then((res) {
-      print(res.data['data']);
-      setState(() {
-        _swiperList = res.data['data'];
-      });
-    });
-    FutureDio('get', Api2.TopCourses, {
-      // "category":0,
-      // "status":0
-    }).then((res) {
-      print(res.data['data']);
-      setState(() {
-        courseList = res.data['data'];
-      });
     });
   }
 
@@ -81,33 +69,14 @@ class _IndexState extends State<Index> {
         body: ListView(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 0.0),
+              padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
               alignment: Alignment.topLeft,
               child: Column(
                 children: <Widget>[
                   Container(
                       decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),
                       // height: 300,
-                      child: AspectRatio(
-                        aspectRatio: 20 / 8,
-                        child: Swiper(
-                          autoplay: true,
-                          key: UniqueKey(),
-                          itemBuilder: (BuildContext context, int index) {
-                            // return CachedNetworkImage(
-                            //   imageUrl: _swiperList[index]["picture"],
-                            //   fit: BoxFit.cover,
-                            // );
-                            return Image.asset('assets/images/imgLogin.jpg', fit: BoxFit.cover);
-                          },
-                          itemCount: _swiperList.length,
-                          viewportFraction: 0.8,
-                          scale: 0.9,
-                          pagination: SwiperPagination(
-                              builder: DotSwiperPaginationBuilder(
-                                  size: 5, color: Colors.black12, activeColor: Colors.pinkAccent, activeSize: 5)),
-                        ),
-                      ))
+                      child:Image.asset('assets/images/imgLogin.jpg', fit: BoxFit.cover))
                 ],
               ),
 //              height: 280.0,
