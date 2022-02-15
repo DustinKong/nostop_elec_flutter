@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../views/index.dart';
-
+import '../views/home/home_plan.dart';
+import '../views/home/home_standard.dart';
 import '../views/my/my_index.dart';
 
 import '../views/my/my_profile.dart';
@@ -15,6 +16,8 @@ final routes = {
   '/index': (context) => Index(),
   '/login': (context) => MainLoginPage(),
   '/myPage': (context) => MyPage(),
+  '/homePlanPage': (context) => HomePlanPage(),
+  '/homeStandardPage': (context) => HomeStandardPage(),
   // '/myRecordCoursePage': (context) => MyRecordCoursePage(),
   // '/myRecordVideoPage': (context) => MyRecordVideoPage(),
   //

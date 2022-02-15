@@ -9,10 +9,9 @@ class Api {
   static const String randomImage = BASE_URL + '/jeecg-boot/sys/randomImage'; //验证码.
   static const String getUserPermissionByToken = BASE_URL + '/jeecg-boot/sys/permission/getUserPermissionByToken'; //验证码.
 
+  static const String taskStandard = BASE_URL + '/jeecg-boot/standard/taskStandard/list'; //task_standard-分页列表查询
+  static const String prodPlan = BASE_URL + '/jeecg-boot/prodplan/prodPlan/list'; //prod_plan-分页列表查询
 
-
-
-  static const String Rotation = BASE_URL + '/wx/index/rotation'; //首页轮播图
   static const String Search = BASE_URL + '/wx/index/course/search'; //关键词搜索
   static const String Courses = BASE_URL + '/wx/index/courses'; //查询所有所有课程
   static const String CourseInfo = BASE_URL + '/wx/index/course/info'; //获取课程详情

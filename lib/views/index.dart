@@ -31,17 +31,15 @@ class _IndexState extends State<Index> {
       Future.delayed(Duration(milliseconds: 100)).then((e) {
         Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
       });
-    }
-    FutureDio('get', Api.getUserPermissionByToken, {}).then((res) {
-      print(res.data['data']);
-
-    });
+    } else
+      FutureDio('get', Api.getUserPermissionByToken, {"pageNo":1,"pageSize":33}).then((res) {
+        print(res.data['data']);
+      });
   }
 
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
-
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -76,7 +74,7 @@ class _IndexState extends State<Index> {
                   Container(
                       decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),
                       // height: 300,
-                      child:Image.asset('assets/images/imgLogin.jpg', fit: BoxFit.cover))
+                      child: Image.asset('assets/images/imgLogin.jpg', fit: BoxFit.cover))
                 ],
               ),
 //              height: 280.0,
@@ -93,8 +91,29 @@ class _IndexState extends State<Index> {
                 ),
               ),
             ),
-            SizedBox(height: 15,),
-
+            SizedBox(
+              height: 15,
+            ),
+            InkWell(
+              child: ListTile(
+                trailing: Icon(Icons.arrow_forward_ios),
+                title: Text(
+                  "作业规范",
+                  style: TextStyle(fontSize: 24),
+                ),
+              ),
+              onTap: () {Navigator.pushNamed(context, "/homeStandardPage");},
+            ),
+            InkWell(
+              child: ListTile(
+                trailing: Icon(Icons.arrow_forward_ios),
+                title: Text(
+                  "任务列表",
+                  style: TextStyle(fontSize: 24),
+                ),
+              ),
+              onTap: () {Navigator.pushNamed(context, "/homePlanPage");},
+            ),
           ],
         ));
   }

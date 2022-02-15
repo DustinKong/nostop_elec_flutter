@@ -54,15 +54,15 @@ Future FutureDio(String methods, String api, Map<String, dynamic> obj) async {
     //注意get请求使用queryParameters接收参数，post请求使用data接收参数
     ///返回正常
     print(response.data);
-    if (response.data['code'] == 200) {
+    // print(response.data['code']);
+    if (response.data['code'] == 200||response.data['code'] == 0) {
       return response; //返回请求结果
     }
-    else if (response.data['code'] == 400) {
-      return response; //返回请求结果
-    }
-    else if (response.data['code'] == 401) {
+    else {
+    // else if (response.data['code'] == 401) {
+      print("code401");
       Fluttertoast.showToast(
-          msg: response.data['message']??"未知错误",
+          msg: response.data['message']??"请重新登录!",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -77,74 +77,47 @@ Future FutureDio(String methods, String api, Map<String, dynamic> obj) async {
       Router.navigatorKey.currentState.pushNamedAndRemoveUntil('/login', (route) => false);
     }
     ///接口错误
-    else if (response.data['code'] == -1) {
-      Fluttertoast.showToast(
-          msg: response.data['msg']??"未知错误",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.black38,
-          textColor: Colors.white,
-          fontSize: 16.0);
-      print(response.data['msg']);
-      print(response.data);
-      Future.delayed(Duration(milliseconds: 800)).then((e) {
-        Router.navigatorKey.currentState.pushNamedAndRemoveUntil('/', (route) => false);
-      });
-    }
-    ///无权访问
-    // else if (response.data['code'] == 51) {
+    // else if (response.data['code'] == -1) {
     //   Fluttertoast.showToast(
-    //       msg: '请重新登录！',
+    //       msg: response.data['msg']??"未知错误",
     //       toastLength: Toast.LENGTH_SHORT,
     //       gravity: ToastGravity.CENTER,
     //       timeInSecForIosWeb: 1,
     //       backgroundColor: Colors.black38,
     //       textColor: Colors.white,
     //       fontSize: 16.0);
-    //   print('无权访问');
+    //   print(response.data['msg']);
+    //   print(response.data);
     //   Future.delayed(Duration(milliseconds: 800)).then((e) {
     //     Router.navigatorKey.currentState.pushNamedAndRemoveUntil('/', (route) => false);
     //   });
     // }
-    ///token失效 请重新登录
-    // else if (response.data['code'] == 109) {
-    //   Fluttertoast.showToast(
-    //       msg: response.data['msg'] ?? "请重新登录",
-    //       toastLength: Toast.LENGTH_SHORT,
-    //       gravity: ToastGravity.CENTER,
-    //       timeInSecForIosWeb: 1,
-    //       backgroundColor: Colors.black38,
-    //       textColor: Colors.white,
-    //       fontSize: 16.0);
-    //   print('request error');
-    //   Future.delayed(Duration(milliseconds: 800)).then((e) {
-    //     Router.navigatorKey.currentState.pushNamedAndRemoveUntil('/login', (route) => false);
-    //   });
+    // else {
+    //   if(response.data['message']!=null&&response.data['message']!=""){
+    //     Fluttertoast.showToast(
+    //         msg: response.data['message'] ?? "未知错误",
+    //         toastLength: Toast.LENGTH_SHORT,
+    //         gravity: ToastGravity.CENTER,
+    //         timeInSecForIosWeb: 1,
+    //         backgroundColor: Colors.black38,
+    //         textColor: Colors.white,
+    //         fontSize: 16.0);
+    //   }
     // }
-    else {
-      if(response.data['message']!=null&&response.data['message']!=""){
-        Fluttertoast.showToast(
-            msg: response.data['message'] ?? "未知错误",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.black38,
-            textColor: Colors.white,
-            fontSize: 16.0);
-      }
-    }
   } catch (e) {
-    errorRequestTimes++;
-    if(errorRequestTimes%7 == 0) {//每7次错误请求提示一次，避免提示过于频繁
-      Fluttertoast.showToast(
-          msg: "连接超时",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 0,
-          backgroundColor: Colors.black38,
-          textColor: Colors.white,
-          fontSize: 16.0);
-    }
+    print("catch401");
+    print("code401");
+    Fluttertoast.showToast(
+        msg: "请重新登录!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.black38,
+        textColor: Colors.white,
+        fontSize: 16.0);
+    // Future.delayed(Duration(milliseconds: 800)).then((e) {
+    //   Router.navigatorKey.currentState.pushNamedAndRemoveUntil('/login', (route) => false);
+    // });
+    Router.navigatorKey.currentState.pushNamedAndRemoveUntil('/login', (route) => false);
   }
 }
